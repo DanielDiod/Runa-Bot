@@ -1,33 +1,16 @@
-let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
+let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
 
-var handler = async (m, { conn, text, isMods, isOwner }) => {
+let handler = async (m, { conn, text, isOwner, usedPrefix, command }) => {
 
-let users = '500'
-let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
-let [_, code] = link.match(linkRegex) || []
-if (!code) return conn.reply(m.chat, `🍟 *Ingrese el enlace de un grupo*\n\nEjemplo, !unete`, m, rcanal, )
-
-let gpData = await conn.groupGetInviteInfo(code).catch(e => {})
-  
-if ( isMods || isOwner || m.fromMe) {
-conn.reply(m.chat, `✅ ${cb} *Se unió al grupo*`, m, rcanal, )
-await delay(5 * 5000)
+if (!text) return m.reply(`🍭 Ingresa el enlace del Grupo.`)
+let [_, code] = text.match(linkRegex) || []
+if (!code) return m.reply('Enlace invalido.')
 let res = await conn.groupAcceptInvite(code)
-} else {
-const data = global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)
-
-await delay(1 * 1000)
-for (let jid of data.map(([id]) => [id] + '@s.whatsapp.net').filter(v => v != conn.user.jid)) m.reply(m.chat, `🚩 *Solicitud*\n\n*Usuario*\n` + ' wa.me/' + m.sender.split('@')[0] + '\n\n*Enlace*\n ' + link, jid)
-
-conn.reply(m.chat, `*✅ Su enlace se envió a Mí Propietario(a)*`, m, rcanal, )
+m.reply(`🍭 Me uní correctamente al Grupo`)
 }
-
-}
-handler.help = ['join']
-handler.tags = ['own']
-handler.command = /^unete|join|nuevogrupo|unir|unite|unirse|entra|entrar$/i
+handler.help = ['join <link>']
+handler.tags = ['owner']
+handler.command = ['join', 'entrar'] 
+handler.owner = true
 
 export default handler
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-  
