@@ -14,19 +14,19 @@ global.__filename = function filename(pathURL = import.meta.url, rmPrefix = plat
 const __dirname = global.__dirname(import.meta.url)
 
 global.owner = [
-['5493873687620', '✨ YartexBot-MD', true],
-['542215034412'], 
-['593968263524'],
-['595976126756'],
-['59169082565'],
-['573012482597']]
+['51955918117', 'Daniel', true],
+['523912130071', 'Gael', true],
+['51955918117'],
+['51955918117'],
+['51955918117'],
+['523912130071']]
 
 //BETA: Si quiere evitar escribir el número que será bot en la consola, agregué desde aquí entonces:
 //Sólo aplica para opción 2 (ser bot con código de texto de 8 digitos)
 global.botNumberCode = '' //Ejemplo: +59309090909
 global.confirmCode = ''
 
-global.suittag = ['5214531287294']
+global.suittag = ['523912130071']
 global.mods = []
 global.prems = []
 
@@ -34,11 +34,11 @@ global.prems = []
 global.isdev = [['542215034412'], ['593968263524'], ['573012482597'], ['5492215034412'], ['5214434703586'], ['595976126756']]
 
 //Aqui encuentras los nombres del bot 
-global.packname = 'ʏᴀʀᴛᴇx ʙᴏᴛ ᴍᴅ ✨'
-global.author = 'ɢᴀᴛᴀ ᴅɪᴏs 🫶'
-global.wm = 'ʏᴀʀᴛᴇx ʙᴏᴛ ᴍᴅ | ɢᴀᴛᴀ ᴅɪᴏs 🫶'
-global.wm2 = '                   ʏᴀʀᴛᴇx ʙᴏᴛ ᴍᴅ ✨\n> *♡º°‘¨ һᥱᥴһ᥆ ⍴᥆r 𝖿ᥲᥒs ⍴ᥲrᥲ 𝖿ᥲᥒs ¨‘°º♡*'
-global.des = 'һᥱᥴһ᥆ ⍴᥆r 𝖿ᥲᥒs ⍴ᥲrᥲ 𝖿ᥲᥒs.'
+global.packname = 'Runa Bot'
+global.author = 'Daniel'
+global.wm = 'Runa Bot'
+global.wm2 = 'Runa Bot\n> WhatsApp Bot Multidevice'
+global.des = 'WhatsApp Bot Multidevice.'
 
 
 //Las Versiones Y Entre Otros
@@ -47,8 +47,8 @@ global.library = 'Baileys'
 global.baileys = '@whiskeysockets/baileys'
 global.lenguaje = 'Español'
 global.menudi = ['⛶','❏','⫹⫺']
-global.dev = 'GataNina-Li'
-global.devnum = '+593 96 826 3524'
+global.dev = 'Daniel'
+global.devnum = '+51 955 918 117'
 
 // Diseños 
 global.dis = ':⁖֟⊱┈֟፝❥ '
@@ -90,14 +90,14 @@ let botVid12 = 'https://telegra.ph/file/1c5f62544f7278899a9be.mp4' //bl
 global.yartexVid = [botVid1, botVid2, botVid3, botVid4, botVid5, botVid6, botVid7, botVid8, botVid9, botVid10, botVid11, botVid12]
   
 //Enlaces
-global.yt = 'https://youtube.com/@gatadios'
-global.ig = 'https://instagram.com/gata_dios'
-global.md = 'https://github.com/GataNina-Li/YartexBot-MD'
-global.paypal = 'https://paypal.me/OficialGD'
-global.git = 'https://github.com/GataNina-Li'
-global.email = 'theyartexbot@gmail.com'
-global.group = 'https://chat.whatsapp.com/EfWlxyVXlZ7AWVJ6sjJvyI' //Grupo ofc
-global.channel = 'https://whatsapp.com/channel/0029VabS4KD8KMqeVXXmkG1D'
+global.yt = 'https://chat.whatsapp.com/BCwy3LycCvSK5dHoslCEK9'
+global.ig = 'https://chat.whatsapp.com/BCwy3LycCvSK5dHoslCEK9'
+global.md = 'https://github.com/DanielDiod/Runa-Bot'
+global.paypal = 'https://github.com/DanielDiod/Runa-Bot'
+global.git = 'https://github.com/DanielDiod'
+global.email = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.group = 'https://chat.whatsapp.com/BCwy3LycCvSK5dHoslCEK9' //Grupo ofc
+global.channel = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
 global.linkSity = [yt, ig, md, paypal, git, channel, email]
 
 //Raíz
