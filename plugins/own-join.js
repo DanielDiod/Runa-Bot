@@ -19,7 +19,7 @@ const data = global.owner.filter(([number, _, isDeveloper]) => isDeveloper && nu
 await delay(1 * 1000)
 for (let jid of data.map(([id]) => [id] + '@s.whatsapp.net').filter(v => v != conn.user.jid)) m.reply(m.chat, `🚩 *Solicitud*\n\n*Usuario*\n` + ' wa.me/' + m.sender.split('@')[0] + '\n\n*Enlace*\n ' + link, jid)
 
-conn.reply(m.chat, `*✅ Su enlace se envió a Mí Propietario(a)*`, m, rcanam, )
+conn.reply(m.chat, `*✅ Su enlace se envió a Mí Propietario(a)*`, m, rcanal, )
 }
 
 }
