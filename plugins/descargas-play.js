@@ -2,9 +2,6 @@ import fetch from "node-fetch"
 import yts from "yt-search"
 
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
-let rwait = '⏱️'
-let done = '✅️'
-let error = '❌️'
 if (!text) return conn.reply(m.chat, `🚩 *Ingrese el nombre de un video de YouTube*\n\nEjemplo, !${command} Distancia - Kimberly Contreraxx`,  m, rcanal, )
 try {
 await m.react(rwait)
@@ -47,7 +44,7 @@ forwardingScore: 9999,
 isForwarded: true, 
 externalAdReply: {
 title: `${yt_play[0].title}`,
-body: '🌟 Runa-Bot By: Daniel',
+body: wm,
 thumbnailUrl: img,
 thumbnail: img,
 sourceUrl: `${yt_play[0].url}`,
@@ -56,7 +53,7 @@ renderLargerThumbnail: true
 }}}, { quoted: m})
 await m.react(done)
 } catch {
-await m.reply(`Ocurrió un pequeño error.`)}}
+await m.reply(`✘ Ocurrío un error`)}}
 
 handler.help = ['play *<búsqueda>*', 'play2 *<busqueda>*']
 handler.tags = ['descargas', 'youtube']
