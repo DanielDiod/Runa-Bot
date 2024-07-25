@@ -2,6 +2,9 @@ import fetch from "node-fetch"
 import yts from "yt-search"
 
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
+let rwait = '⏱️'
+let done = '✅️'
+let error = '❌️'
 if (!text) return conn.reply(m.chat, `🚩 *Ingrese el nombre de un video de YouTube*\n\nEjemplo, !${command} Distancia - Kimberly Contreraxx`,  m, rcanal, )
 try {
 await m.react(rwait)
