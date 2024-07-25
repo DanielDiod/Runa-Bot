@@ -417,8 +417,8 @@ mentionedJid: await conn.parseMention(menu),
 isForwarded: true,
 forwardingScore: 1,
 forwardedNewsletterMessageInfo: {
-newsletterJid: '120363302472386010@newsletter',
-newsletterName: 'YartexBot-MD ✨',
+newsletterJid: '120363206717994793@newsletter',
+newsletterName: 'Runa Bot MD',
 serverMessageId: 100
 }}
 
