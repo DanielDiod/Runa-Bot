@@ -12,7 +12,7 @@ let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
     },
 	    externalAdReply: {
 				    showAdAttribution: true,
-					title: botname,
+					title: packname,
 					body: 'Hola',
 					mediaUrl: null,
 					description: null,
@@ -31,7 +31,7 @@ let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
                  isForwarded: false, 
                     externalAdReply: {
 				    showAdAttribution: true,
-					title: botname,
+					title: packname,
 					body: textbot,
 					mediaUrl: null,
 					description: null,
