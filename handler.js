@@ -71,7 +71,7 @@ if (!('banned' in user)) user.banned = false
 if (!isNumber(user.warn)) user.warn = 0
 if (!isNumber(user.level)) user.level = 0
 if (!('role' in user)) user.role = 'Novato'
-if (!('autolevelup' in user)) user.autolevelup = true
+if (!('autolevelup' in user)) user.autolevelup = false
 if (!('simi' in user)) user.simi = false
 if (!('muto' in user)) user.muto = false
 if (!('premium' in user)) user.premium = false
@@ -107,7 +107,7 @@ banned: false,
 warn: 0,
 level: 0,
 role: 'Novato',
-autolevelup: true,
+autolevelup: false,
 simi: false,
 muto: false,
 premium: false,
@@ -153,7 +153,7 @@ if (!('sWelcome' in chat)) chat.sWelcome = ''
 if (!('sBye' in chat)) chat.sBye = ''
 if (!('sPromote' in chat)) chat.sPromote = ''
 if (!('sDemote' in chat)) chat.sDemote = ''
-if (!('delete' in chat)) chat.delete = true
+if (!('delete' in chat)) chat.delete = false
 if (!('antiLink' in chat)) chat.antiLink = false
 if (!('antiTraba' in chat)) chat.antiTraba = true
 if (!('antiToxic' in chat)) chat.antiToxic = true
@@ -161,10 +161,10 @@ if (!('viewonce' in chat)) chat.viewonce = true
 if (!('onlyLatinos' in chat)) chat.onlyLatinos = false
 if (!('modoadmin' in chat)) chat.modoadmin = false   
 if (!('nsfw' in chat)) chat.nsfw = true
-if (!('reaction' in chat)) chat.reaction = true    
+if (!('reaction' in chat)) chat.reaction = false    
 if (!('antiSticker' in chat)) chat.antiSticker = false 
 if (!('antibule' in chat)) chat.antibule = false 
-if (!('audios' in chat)) chat.audios = true
+if (!('audios' in chat)) chat.audios = false
 if (!('game' in chat)) chat.game = true
 if (!isNumber(chat.expired))
 chat.expired = 0
@@ -180,7 +180,7 @@ sBye: '',
 sPromote: '',
 sDemote: '',
 editMenu: { emoji: true, imagen: false, video: false, mencion: true, dinamico: true, simple: false, dividir: false, verificado: true, personalizado: false },
-delete: true,
+delete: false,
 antiTraba: true,
 antiToxic: false,
 antiLink: true,
@@ -189,10 +189,10 @@ useDocument: true,
 onlyLatinos: false,
 modoadmin: false,
 nsfw: true,
-reaction: true, 
+reaction: false, 
 antiSticker: false,
 antibule: false,
-audios: true, 
+audios: false, 
 game: true, 
 expired: 0
 }
@@ -617,7 +617,7 @@ group: '*¡Este comando solo se puede usar en grupos!*',
 private: '*¡Esta función solo se puede utilizar en chat privado!*',
 admin: '*¡Este comando solo puede ser utilizado por admins!*',
 botAdmin: '*¡Para realizar la función debo ser admin!*',
-unreg: '`🍟 INFORMACIÓN`\n\n#verificar nombre.edad\n\n*Uso correcto:*\n> #reg Daniel.28',
+unreg: '`🍟 INFORMACIÓN`\n\nNecesitas esar registrado para usar esta función\n\n*Uso correcto:*\n> #reg Daniel.28',
 restrict: '*¡Esta característica esta desactivada!*'
 }[type]
 if (msg) return conn.reply(m.chat, msg, m, { contextInfo:{ externalAdReply: {title: '📖', body: dev, sourceUrl: global.channel, thumbnailUrl: random1() }}})
