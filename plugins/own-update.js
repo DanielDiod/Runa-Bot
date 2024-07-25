@@ -28,7 +28,7 @@ let errorMessage2 = '🚩 *Ocurrió un fallo. Por favor, inténtalo de nuevo má
 if (error.message) {
 errorMessage2 += '\n*- Mensaje de error:* ' + error.message;
 }
-await conn.reply(m.chat, errorMessage2, m, fake, )
+await conn.reply(m.chat, errorMessage2, m, rcanal, )
 }
 }
 
