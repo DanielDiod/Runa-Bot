@@ -91,7 +91,7 @@ global.twa = {key: {participant: "0@s.whatsapp.net", remoteJid: "0@s.whatsapp.ne
 global.fakemek = {key: {participant: "0@s.whatsapp.net",remoteJid: "0@s.whatsapp.net"}, message: {groupInviteMessage: {groupJid: "51995386439-1616969743@g.us", inviteCode: "m",groupName: "P", caption: 'YartexBot-MD', jpegThumbnail: null}}}
 
 
-const moji = (await axios.get(`https://raw.githubusercontent.com/GataNina-Li/YartexBot-MD/main/storage/juegos/emojis.json`)).data
+const moji = (await axios.get(`https://raw.githubusercontent.com/DanielDiod/Runa-Bot/main/storage/juegos/emojis.json`)).data
 const emoji = await moji[Math.floor(moji.length * Math.random())]
 
 var credit = 'X8KpIFJlcXVlc3RlZCBieSBDdXJpb3NpdHlCb3Rf'
@@ -115,9 +115,9 @@ global.fake = {
 contextInfo: {
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterJid: "120363302472386010@newsletter",
+newsletterJid: "120363206717994793@newsletter",
 serverMessageId: 100,
-newsletterName: 'YartexBot-MD ✨',
+newsletterName: 'Runa-Bot-MD',
 },
 externalAdReply: { 
 showAdAttribution: true,
