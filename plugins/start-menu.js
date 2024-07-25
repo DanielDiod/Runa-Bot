@@ -15,7 +15,7 @@ let tags = {
   'group': 'Grupos 👥',
   'logo': 'Logo - maker 🎨',
   'nable': 'On / Off 📴', 
-  'downloader': 'Descargas 📥',
+  'descargas': 'Descargas 📥',
   'tools': 'Herramientas 🔧',
   'fun': 'Diversión 🎲',
   'nsfw': 'Nsfw 🔞', 
