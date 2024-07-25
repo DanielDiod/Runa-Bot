@@ -32,7 +32,7 @@ let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
                     externalAdReply: {
 				    showAdAttribution: true,
 					title: packname,
-					body: textbot,
+					body: des,
 					mediaUrl: null,
 					description: null,
 					previewType: "PHOTO",
