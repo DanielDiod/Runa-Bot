@@ -17,7 +17,7 @@ let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
 					mediaUrl: null,
 					description: null,
 					previewType: "PHOTO",
-					thumbnailUrl: 'https://qu.ax/fUDA.jpg',
+					thumbnailUrl: 'https://telegra.ph/file/474de03b8c0cf87231d8e.jpg',
 		           sourceUrl: channel,
 		           mediaType: 1,
                    renderLargerThumbnail: false
