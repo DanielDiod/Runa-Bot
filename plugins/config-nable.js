@@ -332,7 +332,7 @@ conn.reply(m.chat, `*${isEnable ? '❕' : '❗'} La función ${type} se a ${isEn
 
 }
 handler.help = ['en', 'dis'].map(v => v + 'able')
-handler.tags = ['nable', 'owner']
+handler.tags = ['nable']
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
 
 export default handler
