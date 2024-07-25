@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 export async function before(m, { conn }) {
 let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
- global.rcanal = {
+ /*global.rcanal = {
     contextInfo: {
     	isForwarded: true,
     forwardedNewsletterMessageInfo: {
@@ -23,7 +23,9 @@ let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
                    renderLargerThumbnail: false
 	    },
     },
-  }
+  }*/
+
+global.rcanal = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: "120363263466636910@newsletter", serverMessageId: 100, newsletterName: 'Runa - Channel', }, externalAdReply: { showAdAttribution: true, title: packname, body: 'Hola', mediaUrl: null, description: null, previewType: "PHOTO", thumbnailUrl: 'https://qu.ax/fUDA.jpg', sourceUrl: channel, mediaType: 1, renderLargerThumbnail: false }, }, }
 
  global.adReply = {
 	    contextInfo: { 
