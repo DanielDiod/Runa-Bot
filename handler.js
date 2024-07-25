@@ -617,7 +617,7 @@ group: '*¡Este comando solo se puede usar en grupos!*',
 private: '*¡Esta función solo se puede utilizar en chat privado!*',
 admin: '*¡Este comando solo puede ser utilizado por admins!*',
 botAdmin: '*¡Para realizar la función debo ser admin!*',
-unreg: '> *¡Debe registrarse!*\n\n#verificar nombre.edad\n\n*Uso correcto:* #verificar GataNina.20',
+unreg: '`🍟 INFORMACIÓN`\n\n#verificar nombre.edad\n\n*Uso correcto:*\n> #reg Daniel.28',
 restrict: '*¡Esta característica esta desactivada!*'
 }[type]
 if (msg) return conn.reply(m.chat, msg, m, { contextInfo:{ externalAdReply: {title: '📖'  + saludo + ' ' + nombre, body: dev, sourceUrl: global.channel, thumbnailUrl: random1() }}})
