@@ -21,7 +21,7 @@ user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 m.react('📩') 
-let regbot =`🗃️ *R E G I S T R A D O* 🗃️
+let regbot =`🗃️ *R E G I S T R A D O* 🗃️\n
 💌 *Nombre:* ${name}
 📆 *Edad* : ${age} años
 🧧 *Numero de serie*:\n
