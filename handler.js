@@ -71,7 +71,6 @@ if (!('banned' in user)) user.banned = false
 if (!isNumber(user.warn)) user.warn = 0
 if (!isNumber(user.level)) user.level = 0
 if (!('role' in user)) user.role = 'Novato'
-if (!('autolevelup' in user)) user.autolevelup = false
 if (!('simi' in user)) user.simi = false
 if (!('muto' in user)) user.muto = false
 if (!('premium' in user)) user.premium = false
@@ -107,7 +106,6 @@ banned: false,
 warn: 0,
 level: 0,
 role: 'Novato',
-autolevelup: false,
 simi: false,
 muto: false,
 premium: false,
