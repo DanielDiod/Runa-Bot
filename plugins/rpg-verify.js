@@ -24,8 +24,8 @@ m.react('📩')
 let regbot =`🗃️ *R E G I S T R A D O* 🗃️
 💌 *Nombre:* ${name}
 📆 *Edad* : ${age} años
-🧧 *Numero de serie*:
- 🎁 *R E M C O N P E N S A* 🎁
+🧧 *Numero de serie*:\n
+ 🎁 *R E M C O N P E N S A* 🎁\n
 🍫 *Chocolates:* 10
 🍭 *Dulces:* 5
 🧃 *Jugo:* 1
