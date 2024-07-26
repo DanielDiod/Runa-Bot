@@ -30,18 +30,15 @@ let a = {'key': {'participants': '0@s.whatsapp.net', 'fromMe': false, 'id': '3B6
 const ftrol = { key : { remoteJid: 'status@broadcast', participant : '0@s.whatsapp.net' }, message: { orderMessage: { itemCount : 2023, status: 1, surface : 1, message: `${user}!`, orderTitle: `▮Menu ▸`, sellerJid: '0@s.whatsapp.net' }}}
 const fload = { key : { message: `Runa-Bot-MD 🍟` + `\nGataNina-Li`, thumbnail: await (await fetch(pp)).buffer(), sellerJid: '0@s.whatsapp.net' }}
 
-m.react('🌟')
+m.react('👋🏻')
   
-let menu = `*👋 Hola, ${user}*
+let menu = `*🍟 Hola, ${user}*
 
 *País*: ${nombreLugar} 
 *Ciudad*: ${ciudad}
 
 !allmenu
-_(Para ver el menú completo)_
-
-!menu2
-_(Para ver el menu audios)_`
+_(Para ver el menú completo)_`
 
 await conn.reply(m.chat, menu, a, { contextInfo: { externalAdReply: {title: '👋 ¡Hola!', body: '', sourceUrl: ig, thumbnail: await (await fetch(pp)).buffer() }}})
 
