@@ -8,7 +8,7 @@ await m.react(rwait)
 let yt_play = await search(args.join(" "))
 let img = await (await fetch(`${yt_play[0].image}`)).buffer()
 
-let txt = `*乂  Y O U T U B E  -  P L A Y  乂*\n\n`
+let txt = `*ゲ◜៹  Y O U T U B E  -  P L A Y  ៹◞ゲ*\n\n`
        txt += `🍟 *Título:*\n${yt_play[0].title}\n\n`
        txt += `🍟 *Duración:*\n${secondString(yt_play[0].duration.seconds)}\n\n`
        txt += `🍟 *Publicado en:*\n${yt_play[0].ago}\n\n`
