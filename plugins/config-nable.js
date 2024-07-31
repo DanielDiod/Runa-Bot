@@ -303,32 +303,32 @@ break
 default:
 if (!/[01]/.test(command)) return await conn.reply(m.chat, `*🧃 OPCIONES PARA GRUPO*
 
-_${usedPrefix + command} *welcome*_
-_${usedPrefix + command} *antilink*_
-_${usedPrefix + command} *antilink2*_
-_${usedPrefix + command} *antifake*_
-_${usedPrefix + command} *antitraba*_
-_${usedPrefix + command} *antitoxic*_
-_${usedPrefix + command} *autolevelup*_
-_${usedPrefix + command} *nsfw*_
-_${usedPrefix + command} *simi*_
-_${usedPrefix + command} *detect*_
-_${usedPrefix + command} *modoadmin*_
-_${usedPrefix + command} *antisticker*_
-_${usedPrefix + command} *autosticker*_
-_${usedPrefix + command} *antibule*_
+${usedPrefix + command} *welcome*
+${usedPrefix + command} *antilink*
+${usedPrefix + command} *antilink2*
+${usedPrefix + command} *antifake*
+${usedPrefix + command} *antitraba*
+${usedPrefix + command} *antitoxic*
+${usedPrefix + command} *autolevelup*
+${usedPrefix + command} *nsfw*
+${usedPrefix + command} *simi*
+${usedPrefix + command} *detect*
+${usedPrefix + command} *modoadmin*
+${usedPrefix + command} *antisticker*
+${usedPrefix + command} *autosticker*
+${usedPrefix + command} *antibule*
 
-*🍧 OPCIONES DE PROPIETARIO*
+*🍫 OPCIONES DE PROPIETARIO*
 
-_${usedPrefix + command} *restrict*_
-_${usedPrefix + command} *public*_
-_${usedPrefix + command} *pconly*_
-_${usedPrefix + command} *gconly*_
-_${usedPrefix + command} *autoread*_
-_${usedPrefix + command} *modejadibot*_`, m, fake, )
+${usedPrefix + command} *restrict*
+${usedPrefix + command} *public*
+${usedPrefix + command} *pconly*
+${usedPrefix + command} *gconly*
+${usedPrefix + command} *autoread*
+${usedPrefix + command} *modejadibot*`, m)
 throw false
 }
-conn.reply(m.chat, `*${isEnable ? '❕' : '❗'} La función ${type} se a ${isEnable ? 'activado' : 'desactivado'} en ${isAll ? 'bot' : isUser ? '' : 'este chat.'}*`, m, fake, )
+conn.reply(m.chat, `*${isEnable ? '❕' : '❗'} La función ${type} se a ${isEnable ? 'activado' : 'desactivado'} en ${isAll ? 'bot' : isUser ? '' : 'este chat.'}*`, m)
 
 }
 handler.help = ['en', 'dis'].map(v => v + 'able')
