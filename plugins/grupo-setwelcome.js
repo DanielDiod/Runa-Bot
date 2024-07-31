@@ -5,7 +5,7 @@ if (isROwner) global.conn.welcome = text
 else if (isOwner) conn.welcome = text
 else global.db.data.chats.sWelcome = text
 
-conn.reply(m.chat, '✅ *La bienvenida se a configurado*', m)
+conn.reply(m.chat, '🧃 La bienvenida se a configurado', m)
 } else return conn.reply(m.chat, '🧃 Ingrese el texto que quiere que envie al unirse una persona', m)
 }
 handler.help = ['setwelcome']
