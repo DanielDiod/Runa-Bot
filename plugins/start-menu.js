@@ -28,13 +28,20 @@ const defaultMenu = {
   before: `
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
 
-“ hello *%name*, Cómo se encuentra el día de hoy? ”
+“ hello *%name*, Mi nombre es *Runa Bot, ¿Cómo se encuentra el día de hoy? "
+
+╭──⬣「 *Info Bot* 」⬣
+│  ≡◦ *🧧 Creador ∙* Daniel
+│  ≡◦ *📋 Numero ∙* +51955918117
+│  ≡◦ *⚙️ Prefijo ∙* !
+│  ≡◦ *🕛 Tiempo Activo ∙* %uptime
+╰──⬣
 
 ╭──⬣「 *Info User* 」⬣
-│  ≡◦ *🍭 Nombre ∙* %name
-│  ≡◦ *🍬 Dulces ∙* %limit
+│  ≡◦ *🧃 Nombre ∙* %name
+│  ≡◦ *🍫 chocolates ∙* %limit
 │  ≡◦ *💫 XP ∙* %totalexp
-│  ≡◦ *🐢 Nivel ∙* %level
+│  ≡◦ *📊 Nivel ∙* %level
 ╰──⬣
 %readmore
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
@@ -145,8 +152,8 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     
-    let pp = './storage/warn.jpg'
-    await conn.sendFile(m.chat, pp, 'thumbnail.jpg', text.trim(), m, null, rcanal)
+    let pp = './storage/logos/Menu1.jpg'
+    await conn.sendFile(m.chat, pp, 'thumbnail.jpg', text.trim(), m)
 
   } catch (e) {
     conn.reply(m.chat, 'Lo sentimos, el menú tiene un error.', m)
