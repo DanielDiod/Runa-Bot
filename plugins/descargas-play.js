@@ -13,9 +13,9 @@ let txt = '`*ゲ◜៹ YouTube Downloader ៹◞ゲ`\n'
        txt += `🍟 Duración:\n${secondString(yt_play[0].duration.seconds)}\n`
        txt += `🍟 Piblicado En:\n${yt_play[0].ago}\n`
        txt += `🍟 Enlace:\n${'https://youtu.be/' + yt_play[0].videoId}\n\n`
-       txt += `> Nota: Para descargar responde a este mensaje con Audio o Video.\n`
-       txt += `1 : Audio`
-       txt += `2 : Video`
+       txt += `> Nota: Para descargar responde a este mensaje con *1* o *2*.\n`
+       txt += `*1:* Video\n*2:* Audio`
+       
 /* let txt = `・₊✧★。..・✫・🎸🎧°⋆♡₊˚ 🔮
 > 🌩 τιτυℓο:
 > • ${yt_play[0].title}
