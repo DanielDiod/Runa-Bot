@@ -28,7 +28,7 @@ const defaultMenu = {
   before: `
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
 
-“ hello *%name*, Mi nombre es *Runa Bot, ¿Cómo se encuentra el día de hoy? "
+“ hello *%name*, Mi nombre es *Runa Bot* , ¿Cómo se encuentra el día de hoy? "
 
 ╭──⬣「 *Info Bot* 」⬣
 │  ≡◦ *🧧 Creador ∙* Daniel
