@@ -8,11 +8,11 @@ await m.react(rwait)
 let yt_play = await search(args.join(" "))
 let img = await (await fetch(`${yt_play[0].image}`)).buffer()
 
-let txt = '`*ゲ◜៹ YouTube Downloader ៹◞ゲ`\n\n'
-       txt += `Titulo:\n${yt_play[0].title}\n\n`
-       txt += `Duración:\n${secondString(yt_play[0].duration.seconds)}\n\n`
-       txt += `Piblicado En:\n${yt_play[0].ago}\n\n`
-       txt += `Enlace:\n${'https://youtu.be/' + yt_play[0].videoId}\n\n`
+let txt = '`*ゲ◜៹ YouTube Downloader ៹◞ゲ`\n'
+       txt += `Titulo:\n${yt_play[0].title}\n`
+       txt += `Duración:\n${secondString(yt_play[0].duration.seconds)}\n`
+       txt += `Piblicado En:\n${yt_play[0].ago}\n`
+       txt += `Enlace:\n${'https://youtu.be/' + yt_play[0].videoId}\n`
        txt += `> Nota: Para descargar responde a este mensaje con Audio o Video.\n\n`
 
 /* let txt = `・₊✧★。..・✫・🎸🎧°⋆♡₊˚ 🔮
