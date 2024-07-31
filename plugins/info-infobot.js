@@ -26,40 +26,40 @@ let speed = neww - old
 let info = `⬡ *Creador*
 Daniel
 
-⬡ *Contacto* 
+🍓 *Contacto* 
 ${ig}
 
-⬡ *Versión actual*
+🍓 *Versión actual*
  ${vs}
 
-⬡ *Prefijo*
+🍓 *Prefijo*
 !
 
-⬡ *Chats privados*
+🍓 *Chats privados*
 ${chats.length - groups.length}
 
-⬡ *Chats grupales*
+🍓 *Chats grupales*
 ${groups.length}
 
-⬡ *Todos los chats*
+🍓 *Todos los chats*
 ${chats.length}
 
-⬡ *Actividad*
+🍓 *Actividad*
 ${uptime}
 
-⬡ *Usuarios*
+🍓 *Usuarios*
 ${totalreg}
 
-⬡ *Velocidad*
+🍓 *Velocidad*
 ${speed}
 
-⬡ *Autoread*
+🍓 *Autoread*
 ${autoread ? 'Habilitado' : 'Deshabilitado'}
 
-⬡ *Restrict*
+🍓 *Restrict*
 ${restrict ? 'Habilitado' : 'Deshabilitado'}`
 
- conn.sendMessage(m.chat, { text: info, contextInfo: { externalAdReply: { title: '', body: '🌟 YartexBot Info', thumbnail: imagen2, sourceUrl: '', mediaType: 1, renderLargerThumbnail: true }}})
+ conn.sendMessage(m.chat, { text: info, contextInfo: { externalAdReply: { title: '', body: 'Runa Bot Informacion', thumbnail: imagen2, sourceUrl: '', mediaType: 1, renderLargerThumbnail: true }}})
 
 }
 handler.help = ['infobot']
