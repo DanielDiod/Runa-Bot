@@ -169,7 +169,7 @@ rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para 
 ]})
 await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Creador:* Daniel\n*Versión:* 1.0.0\n\n💮 si hay algún error puedes contactarme, usa el comando: #owner\n\nGracias¡! 🔴', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
   } catch (e) {
-    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
+    conn.reply(m.chat, '🍟 Lo sentimos, el menú tiene un error.', m)
     throw e
   }
 }
