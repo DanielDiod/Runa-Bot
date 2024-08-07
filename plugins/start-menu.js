@@ -1,208 +1,192 @@
-import ws from 'ws';
+import { promises } from 'fs'
+import { join } from 'path'
+import fetch from 'node-fetch'
+import { xpRange } from '../lib/levelling.js'
 
-let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-    let uniqueUsers = new Map();
+let tags = {
+  'main': 'INFO',
+  'game': 'JUEGOS',
+  'serbot': 'SUB BOTS',
+  'rpg': 'ECONOMÍA',
+  'rg': 'REGISTRO',
+  'downloader': 'DESCARGAS',
+  'marker': 'LOGO - MAKER',
+  'nable': 'ACTIVADORES',
+  'group': 'GRUPOS',
+  'search': 'BUSCADOR',
+  'img': 'IMÁGENES',
+  'tools': 'HERRAMIENTAS',
+  'fun': 'DIVERCIÓN',
+  'audio': 'EFECTO DE AUDIOS', 
+  'sticker': 'STICKERS',
+  'nsfw': 'NSFW',
+  'owner': 'CREADOR',
+  'advanced': 'AVANZADO',
+}
 
-    global.conns.forEach((conn) => {
-        if (conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED) {
-            uniqueUsers.set(conn.user.jid, conn);
-        }
-    });
+const defaultMenu = {
+  before: `
+ > IGNA BOT FUTURE
 
-    let users = [...uniqueUsers.values()];
-    let totalUsers = users.length;
+╭━━━━━━━∙⋆⋅⋆∙━━━━━━━━╮
+➤📝 *Nombre* : %name
+➤🪙 *Euros* : %limit
+➤🤖 *User* : %taguser
+➤📈 *Nivel* : %level
+➤⭐ *XP* : %totalexp
+╰━━━━━━━∙⋆⋅⋆∙━━━━━━━━╯
 
-    let totalusr = Object.keys(global.db.data.users).length;
-    let _uptime = process.uptime() * 1000;
-    let uptime = clockString(_uptime);
-    let username = conn.getName(m.sender);
-    let locale = 'es';
-    let d = new Date(new Date + 3600000);
+╭━━━━━━━∙⋆⋅⋆∙━━━━━━━━╮
+➤🗣️ *Creador* : Daniel 🇦🇱
+➤📲 *Número* : Wa.me/51955918117
+➤⌛ *Tiempo* : %uptime
+╰━━━━━━━∙⋆⋅⋆∙━━━━━━━━╯
+
+%readmore
+`.trimStart(),
+  header: '`MENU X %category`\n\n╭━━━━━━━∙⋆⋅⋆∙━━━━━━━━╮',
+  body: '➤ *%cmd*\n',
+  footer: '╰━━━━━━━∙⋆⋅⋆∙━━━━━━━━╯\n',
+  after: '',
+}
+
+let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
+ try {
+    let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
+    let { exp, star, level } = global.db.data.users[m.sender]
+    let { min, xp, max } = xpRange(level, global.multiplier)
+    let name = await conn.getName(m.sender)
+    let d = new Date(new Date + 3600000)
+    let locale = 'es'
+    // d.getTimeZoneOffset()
+    // Offset -420 is 18.00
+    // Offset    0 is  0.00
+    // Offset  420 is  7.00
+    let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
+    let week = d.toLocaleDateString(locale, { weekday: 'long' })
+    let date = d.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+    let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }).format(d)
     let time = d.toLocaleTimeString(locale, {
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-    });
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    })
+    let _uptime = process.uptime() * 1000
+    let _muptime
+    if (process.send) {
+      process.send('uptime')
+      _muptime = await new Promise(resolve => {
+        process.once('message', resolve)
+        setTimeout(resolve, 1000)
+      }) * 1000
+    }
+    let muptime = clockString(_muptime)
+    let uptime = clockString(_uptime)
+    let totalreg = Object.keys(global.db.data.users).length
+    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+    let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
+      return {
+        help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
+        tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
+        prefix: 'customPrefix' in plugin,
+        star: plugin.star,
+        premium: plugin.premium,
+        enabled: !plugin.disabled,
+      }
+    })
+    for (let plugin of help)
+      if (plugin && 'tags' in plugin)
+        for (let tag of plugin.tags)
+          if (!(tag in tags) && tag) tags[tag] = tag
+    conn.menu = conn.menu ? conn.menu : {}
+    let before = conn.menu.before || defaultMenu.before
+    let header = conn.menu.header || defaultMenu.header
+    let body = conn.menu.body || defaultMenu.body
+    let footer = conn.menu.footer || defaultMenu.footer
+    let after = conn.menu.after || (conn.user.jid == global.conn.user.jid ? '' : ``) + defaultMenu.after
+    let _text = [
+      before,
+      ...Object.keys(tags).map(tag => {
+        return header.replace(/%category/g, tags[tag]) + '\n' + [
+          ...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
+            return menu.help.map(help => {
+              return body.replace(/%cmd/g, menu.prefix ? help : '%p' + help)
+                .replace(/%isstar/g, menu.star ? '˄' : '')
+                .replace(/%isPremium/g, menu.premium ? '˄' : '')
+                .trim()
+            }).join('\n')
+          }),
+          footer
+        ].join('\n')
+      }),
+      after
+    ].join('\n')
+    let text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ? _text : ''
+    let replace = {
+      '%': '%',
+      p: _p, uptime, muptime,
+      taguser: '@' + m.sender.split("@s.whatsapp.net")[0],
+      wasp: '@0',
+      me: conn.getName(conn.user.jid),
+      npmname: _package.name,
+      version: _package.version,
+      npmdesc: _package.description,
+      npmmain: _package.main,
+      author: _package.author.name,
+      license: _package.license,
+      exp: exp - min,
+      maxexp: xp,
+      totalexp: exp,
+      xp4levelup: max - exp,
+      github: _package.homepage ? _package.homepage.url || _package.homepage : '[unknown github url]',
+      level, star, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg,
+      readmore: readMore
+    }
+    text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
+    
+    let pp = 'https://telegra.ph/file/4c3e4b782c82511b3874d.mp4'
+    let pp2 = 'https://telegra.ph/file/d8c5e18ab0cfc10511f63.mp4'
+    let pp3 = 'https://telegra.ph/file/96e471a87971e2fb4955f.mp4'
+    let pp4 = 'https://telegra.ph/file/09b920486c3c291f5a9e6.mp4'
+    m.react('💻')
+   
+  //  conn.sendMessage(m.chat, { video: { url: [pp, pp2, pp3, pp4].getRandom() }, gifPlayback: true, caption: text.trim(), mentions: [m.sender] }, { quoted: m })
+let listSections = []    
+listSections.push({
+title: '',
+rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para ver todos los comandos\n` }, { header: "SudBot", title: "", id: `.serbot --code`, description: `Para volverte sudbot con código de 8 dígitos 🤖\n` },
+{ header: "Velocidad", title: "", id: `.ping`, description: `Ver velocidad del bot 🎌\n` },
+{ header: "Idioma", title: "", id: `.idioma`, description: `elije tu idioma favorito  🌍\n` },
+{ header: "creador", title: "", id: `.creador`, description: `comunicate con mi creador ⚙️` }
+]})
+await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Creador:* Daniel\n*Versión:* 1.0.0\n\n💮 si hay algún error puedes contactarme, usa el comando: #owner\n\nGracias¡! 🔴', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
+  } catch (e) {
+    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
+    throw e
+  }
+}
 
-    let sbot =
-        conn.user.jid == global.conn.user.jid
-        ? ". .┊ ‹‹ `𝘉𝘖𝘛:` :: 𝘗𝘳𝘪𝘯𝘤𝘪𝘱𝘢𝘭. ."
-        : ". .┊ ‹‹ `𝘉𝘖𝘛:` :: 𝘚𝘶𝘣 - 𝘣𝘰𝘵 𝘥𝘦. ." + `  Wa.me/${global.conn.user.jid.split`@`[0]}`;
+handler.help = ['menu']
+handler.tags = ['main']
+handler.command = ['menu', 'help', 'menú'] 
+handler.register = true 
+export default handler
 
-    global.fcontact = {
-        key: {
-            fromMe: false,
-            participant: `0@s.whatsapp.net`,
-            remoteJid: "status@broadcast",
-        },
-        message: {
-            contactMessage: {
-                displayName: `ɢᴇɴᴇꜱɪꜱ ʙᴏᴛ`,
-                vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${username}\nitem1.TEL;waid=${m.sender.split("@")[0]}:${m.sender.split("@")[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
-            },
-        },
-    };
 
-    let totalreg = Object.keys(global.db.data.users).length;
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length;
-
-    await conn.reply(m.chat, '🐈‍⬛ `𝗖𝗔𝗥𝗚𝗔𝗡𝗗𝗢 𝗠𝗘𝗡𝗨....`', m);
-
-    m.react("🐈‍⬛");
-    let menu = ``;
-
-    let txt = ""
-    txt += ". .╭── ︿︿︿︿︿ .   .   .   .   .   . \n";
-    txt += ". .┊ ✩*⢄⢁✧ *⌜ 𝗚𝗘𝗡𝗘𝗦𝗜𝗦 ⌟* ✧⡈⡠*✩\n";
-    txt += '. .┊ ‹‹ `𝘊𝘙𝘌𝘈𝘋𝘖𝘙:` ::  ' + `yo .\n`;
-    txt += '. .┊ ‹‹ `𝘕𝘖𝘔𝘉𝘙𝘌:` ::  ' + `prueba. .\n`;
-    txt += '. .┊ ‹‹ `𝘍𝘌𝘊𝘏𝘈:` ::  ' + `${fecha}. .\n`;
-    txt += '. .┊ ‹‹ `𝘝𝘌𝘙𝘚𝘐𝘖𝘕:` ::  ' + `${vs}. .\n`;
-    txt += '. .┊ ‹‹ `𝘗𝘓𝘈𝘛𝘍𝘖𝘙𝘔:` ::  ' + `𝘓𝘪𝘯𝘶𝘹. .\n`;
-    txt += `${sbot}\n`;
-    txt += '. .┊ ‹‹ `𝘗𝘙𝘌𝘍𝘐𝘑𝘖:` ::  ' + ` [  ${usedPrefix}  ]\n`;
-    txt += '. .┊ ‹‹ `𝘚𝘜𝘉𝘉𝘖𝘛𝘚:` ::  ' + ` _${totalUsers || '0'}_\n`;
-    txt += '. .┊ ‹‹ `𝘜𝘚𝘜𝘈𝘙𝘐𝘖𝘚:` ::  ' + ` _${totalusr}_\n`;
-    txt += '. .┊ ‹‹ `𝘙𝘌𝘎𝘐𝘚𝘛𝘙𝘈𝘋𝘖𝘚:` ::  ' + ` _${rtotalreg}_\n`;
-    txt += '. .┊ ‹‹ `𝘛𝘐𝘌𝘔𝘗𝘖 𝘈𝘊𝘛:` ::  ' + ` _${uptime}_\n`;
-    txt += '. .┊ ‹‹ `𝘖𝘞𝘕𝘌𝘙:` ::  #owner\n';
-    txt += ". .╰─── ︶︶︶︶ ♡⃕  ⌇. . .\n";
-
-    let listSections = [];
-
-    listSections.push({
-        title: `🔖 LISTA MENUS`, highlight_label: `Popular Genesis`,
-        rows: [
-            {
-                header: ". .┊☁️ MENU COMPLETO",
-                title: "",
-                description: `MENU COMPLETO`,
-                id: `.allmenu`,
-            },
-            {
-                header: ". .┊☁️ MENU FREE FIRE",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘧𝘳𝘦𝘦 𝘧𝘪𝘳𝘦`,
-                id: `${usedPrefix}menuff`,
-            },
-            {
-                header: ". .┊☁️ MENU AUDIOS",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘢𝘶𝘥𝘪𝘰𝘴`,
-                id: `${usedPrefix}menuaudios`,
-            },
-            {
-                header: ". .┊☁️ MENU NSFW",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘤𝘢𝘭𝘪𝘦𝘯𝘵𝘦`,
-                id: `${usedPrefix}labiblia`,
-            },
-            {
-                header: ". .┊☁️ MENU GAME",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘫𝘶𝘦𝘨𝘰𝘴`,
-                id: `${usedPrefix}menujuegos`,
-            },
-            {
-                header: ". .┊☁️ MENU RANDOM",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘪𝘮𝘨 𝘳𝘢𝘯𝘥𝘰𝘮`,
-                id: `${usedPrefix}menurandom`,
-            },
-            {
-                header: ". .┊☁️ MENU DESCARGAS",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘥𝘦𝘴𝘤𝘢𝘳𝘨𝘢𝘴`,
-                id: `${usedPrefix}menudl`,
-            },
-            {
-                header: ". .┊☁️ MENU AI",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘯𝘶 𝘥𝘦 𝘐𝘈-𝘉𝘰𝘵`,
-                id: `${usedPrefix}menuai`,
-            },
-            {
-                header: ". .┊☁️ REDES GENESIS",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘭𝘢𝘴 𝘳𝘦𝘥𝘦𝘴 𝘥𝘦𝘭 𝘣𝘰𝘵`,
-                id: `${usedPrefix}redes`,
-            },
-            {
-                header: ". .┊☁️ GRUPOS GENESIS",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘭𝘰𝘴 𝘨𝘳𝘶𝘱𝘰𝘴 𝘥𝘦𝘭 𝘣𝘰𝘵`,
-                id: `${usedPrefix}grupos`,
-            },
-{
-                header: ". .┊☁️ VELOCIDAD GENESIS",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘭𝘢 𝘷𝘦𝘭𝘰𝘤𝘪𝘥𝘢𝘥 𝘥𝘦𝘭 𝘣𝘰𝘵`,
-                id: `${usedPrefix}ping`,
-            },
-{
-                header: ". .┊☁️ DONACION BOT",
-                title: "",
-                description: `𝘔𝘶𝘦𝘴𝘵𝘳𝘢 𝘦𝘭 𝘮𝘦𝘵𝘰𝘥𝘰 𝘥𝘦 𝘥𝘰𝘯𝘢𝘳`,
-                id: `${usedPrefix}donate`,
-            },
-        ],
-    });
-
-    let vid = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img2 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img3 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img4 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img5 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img6 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img8 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img9 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img10 = "https://i.ibb.co/n67xQbC/file.jpg";
-    let img11 = "https://i.ibb.co/n67xQbC/file.jpg";
-
-    await conn.sendList(m.chat, txt, null, `𝗠𝗘𝗡𝗨𝗦 𝗚𝗘𝗡𝗘𝗦𝗜𝗦`, [vid, img, img2, img3, img4, img5, img6, img8, img9, img10, img11].getRandom(), listSections, m);
-};
-
-handler.command = ["menu", "help", "menú"];
-
-export default handler;
-
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
 
 function clockString(ms) {
-  const h = Math.floor(ms / 3600000);
-  const m = Math.floor(ms / 60000) % 60;
-  const s = Math.floor(ms / 1000) % 60;
-  console.log({ ms, h, m, s });
-  return [h, m, s].map((v) => v.toString().padStart(2, 0)).join(":");
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
-
-
-  var ase = new Date();
-  var hour = ase.getHours();
-switch(hour){
-  case 0: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌙'; break;
-  case 1: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 💤'; break;
-  case 2: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🦉'; break;
-  case 3: hour = 'Bᴜᴇɴᴏs Dɪᴀs ✨'; break;
-  case 4: hour = 'Bᴜᴇɴᴏs Dɪᴀs 💫'; break;
-  case 5: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌅'; break;
-  case 6: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌄'; break;
-  case 7: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌅'; break;
-  case 8: hour = 'Bᴜᴇɴᴏs Dɪᴀs 💫'; break;
-  case 9: hour = 'Bᴜᴇɴᴏs Dɪᴀs ✨'; break;
-  case 10: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌞'; break;
-  case 11: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌨'; break;
-  case 12: hour = 'Bᴜᴇɴᴏs Dɪᴀs ❄'; break;
-  case 13: hour = 'Bᴜᴇɴᴏs Dɪᴀs 🌤'; break;
-  case 14: hour = 'Bᴜᴇɴᴀs Tᴀʀᴅᴇs 🌇'; break;
-  case 15: hour = 'Bᴜᴇɴᴀs Tᴀʀᴅᴇs 🥀'; break;
-  case 16: hour = 'Bᴜᴇɴᴀs Tᴀʀᴅᴇs 🌹'; break;
-  case 17: hour = 'Bᴜᴇɴᴀs Tᴀʀᴅᴇs 🌆'; break;
-  case 18: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌙'; break;
-  case 19: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌃'; break;
-  case 20: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌌'; break;
-  case 21: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌃'; break;
-  case 22: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌙'; break;
-  case 23: hour = 'Bᴜᴇɴᴀs Nᴏᴄʜᴇs 🌃'; break;
-}
-  var greeting = hour;
