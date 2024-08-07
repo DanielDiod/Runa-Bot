@@ -1,71 +1,73 @@
+import fg from 'api-dylux'
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-import fetch from 'node-fetch' 
 import yts from 'yt-search'
-import ytdl from 'ytdl-core'
+import fetch from 'node-fetch' 
+let limit = 100
 
-var handler = async (m, { text, conn, args, usedPrefix, command }) => {
-
-if (!args[0]) conn.reply(m.chat, '🎌 *Ingrese el comando mas un enlace de youtube*',  m, fake, )
-
-let youtubeLink = ''
-if (args[0].includes('you')) {
-youtubeLink = args[0]
-} else {
-const index = parseInt(args[0]) - 1
-if (index >= 0) {
-if (Array.isArray(global.videoList) && global.videoList.length > 0) {
-const matchingItem = global.videoList.find(item => item.from === m.sender)
-if (matchingItem) {
-if (index < matchingItem.urls.length) {
-youtubeLink = matchingItem.urls[index]
-} else {
-return conn.reply(m.chat, `🚩 *No se encontro un enlace para ese numero ingresa un numero del 1 al ${matchingItem.urls.length}*`,  m, fake, )
-}} else {
-return conn.reply(m.chat, `🎌 *Para poder usar este comando de la manera (${usedPrefix + command} <numero>), realiza la busqueda de videos con ${usedPrefix}playlist <texto>*`,  m, fake, )
-}} else {
-return conn.reply(m.chat, `🎌 *Para poder usar este comando de la manera (${usedPrefix + command} <numero>), realiza la busqueda de videos con ${usedPrefix}playlist <texto>*`,  m, fake, )
-}}} 
-await conn.reply(m.chat, `⏰ Espere un momento`, m, fake, )
-
-try {
-
+let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
+if (!args || !args[0]) conn.reply(m.chat, `🧃 Escribe la URL de un video de YouTube que deseas descargar.`,  m)
+if (!args[0].match(/youtu/gi)) return conn.reply(m.chat, `Verifica que la *URL* sea de YouTube`, m).then(_ => m.react('✖️'))
 let q = '128kbps'
-let v = youtubeLink
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
-const ttl = await yt.title
-const size = await yt.audio[q].fileSizeH
-await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-} catch {
-  
+
+await m.react('🕓')
 try {
+const yt = await fg.yta(args[0])
+let { title, dl_url, size } = yt
+let vid = (await yts(text)).all[0]
+let { thumbnail, url } = vid
 
-let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${youtubeLink}`)
-let lolh = await lolhuman.json()
-let n = lolh.result.title || 'error'
-m.react(done)
-await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
+if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m).then(_ => m.react('✖️'))
+
+await conn.sendMessage(m.chat, {
+        text: `  🍭 *Título ∙* ${title}\n\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .* .`,
+        contextInfo: { 
+          mentionedJid: [m.sender],
+        }
+      }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mp4", fileName: title + '.mp3', quoted: m, contextInfo: {
+'forwardingScore': 200,
+'isForwarded': true,
+externalAdReply:{
+showAdAttribution: false,
+title: `${title}`,
+body: `${vid.author.name}`,
+mediaType: 2, 
+sourceUrl: `${url}`,
+thumbnail: await (await fetch(vid.thumbnail)).buffer()}}}, { quoted: m })
+await m.react('✅')
 } catch {
-
 try {
+let yt = await fg.ytmp3(args[0])
+let { title, size, dl_url } = yt
+let vid = (await yts(text)).all[0]
+let { thumbnail, url } = vid
 
-let searchh = await yts(youtubeLink)
-let __res = searchh.all.map(v => v).filter(v => v.type == "video")
-let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId)
-let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' })
-m.react(done)
-conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
+if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`,  m, fake,).then(_ => m.react('✖️'))
+
+await conn.sendMessage(m.chat, {
+        text: `  🍭 *Título ∙* ${title}\n\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .* .`,
+        contextInfo: { 
+          mentionedJid: [m.sender],
+        }
+      }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mp4", fileName: title + '.mp3', quoted: m, contextInfo: {
+'forwardingScore': 200,
+'isForwarded': true,
+externalAdReply:{
+showAdAttribution: false,
+title: `${title}`,
+body: `${vid.author.name}`,
+mediaType: 2, 
+sourceUrl: `${url}`,
+thumbnail: await (await fetch(vid.thumbnail)).buffer()}}}, { quoted: m })
+await m.react('✅')
 } catch {
-m.react(error)
-await conn.reply(m.chat, '🚩 *Ocurrió un fallo*', m, fake, )}
-}}
-
-}
-handler.help = ['yta']
-handler.tags = ['descargas']
-handler.command = /^audio|fgmp3|dlmp3|getaud|yt(a|mp3)$/i
-
-handler.register = true
-handler.limit = true
-
+await conn.reply(m.chat, `*☓ Ocurrió un error inesperado*`,  m, fake,).then(_ => m.react('✖️'))
+console.error(error)
+}}}
+handler.help = ['ytmp3 <url yt>']
+handler.tags = ['downloader']
+handler.command = /^(fgmp3|dlmp3|getaud|yt(a|mp3))$/i
+handler.star = 2
+handler.register = true 
 export default handler
