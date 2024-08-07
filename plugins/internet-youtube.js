@@ -17,10 +17,10 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
 
   var messa = await prepareWAMessageMedia({ image: {url: randomVideo.thumbnail}}, { upload: conn.waUploadToServer })
   const interactiveMessage = {
-    body: { text: `*—◉ Resultados obtenidos:* ${results.videos.length}\n*—◉ Video aleatorio:*\n*-› Title:* ${randomVideo.title}\n*-› Author:* ${randomVideo.author.name}\n*-› Views:* ${randomVideo.views}\n*-› Url:* ${randomVideo.url}\n*-› Imagen:* ${randomVideo.thumbnail}`.trim() },
+    body: { text: `*🍟 Resultados De:* ${text}\n🍟 Resultados obtenidos:* ${results.videos.length}`.trim() },
     footer: { text: `${global.wm}`.trim() },  
       header: {
-          title: `*< YouTube Search />*\n`,
+          title: `*•/• YouTube - Search •/•*`,
           hasMediaAttachment: true,
           imageMessage: messa.imageMessage,
       },
