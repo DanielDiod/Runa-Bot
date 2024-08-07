@@ -17,7 +17,7 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
 
   var messa = await prepareWAMessageMedia({ image: {url: randomVideo.thumbnail}}, { upload: conn.waUploadToServer })
   const interactiveMessage = {
-    body: { text: `*🍟 Resultados De:* ${text}\n🍟 Resultados obtenidos:* ${results.videos.length}`.trim() },
+    body: { text: `*🍟 Resultados De:* ${text}\n*🍟 Resultados obtenidos:* ${results.videos.length}`.trim() },
     footer: { text: `${global.wm}`.trim() },  
       header: {
           title: `*•/• YouTube - Search •/•*`,
@@ -29,7 +29,7 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
         {
           name: 'single_select',
           buttonParamsJson: JSON.stringify({
-            title: 'OPCIONES DISPONIBLES',
+            title: 'SELECCIONE AQUÍ',
             sections: videos.map((video) => ({
               title: video.title,
               rows: [
