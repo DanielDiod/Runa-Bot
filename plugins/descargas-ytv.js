@@ -1,46 +1,54 @@
+import fg from 'api-dylux'
+import yts from 'yt-search'
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-import fetch from 'node-fetch'
+let limit = 100
 
-var handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, command }) => {
+if (!args || !args[0]) return conn.reply(m.chat, `🍟 Escribe la URL de un video de YouTube que deseas descargar.`, m)
+if (!args[0].match(/youtu/gi)) return conn.reply(m.chat,`Verifica que la *URL* sea de YouTube`, m).then(_ => m.react('✖️'))
+let q = args[1] || '360p'
 
-if (!args[0]) return conn.reply(m.chat, `🎌 *Ingrese un enlace de YouTube*\n\nEjemplo, !${command} https://youtu.be/85xI8WFMIUY`, m, fake, )
-m.react(rwait)
-
-await conn.reply(m.chat, `⏰ Espere un momento`, m, fake, )
-
+await m.react('🕓')
 try {
+const yt = await fg.ytv(args[0], q)
+let { title, dl_url, size } = yt 
+let vid = (await yts(text)).all[0]
 
-let qu = args[1] || '360'
-let q = qu + 'p'
-let v = args[0]
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.video[q].download()
-const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-m.react(done)
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*Título*\n${ttl}\n\n*Peso*\n${size}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+if (size.split('MB')[0] >= limit) return conn.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m).then(_ => m.react('✖️'))
+
+await conn.sendMessage(m.chat, {
+        text: `🍭 *Título ∙* ${title}\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .*`,
+        contextInfo: { 
+          mentionedJid: [m.sender],
+        }
+      }, { quoted: m })
+     
+await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m)
+await m.react('✅')
 } catch {
-
 try {
+let yt = await fg.ytmp4(args[0], q)
+let { title, size, dl_url } = yt
+let vid = (await yts(text)).all[0]
 
-let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`)    
-let lolh = await lolhuman.json()
-let n = lolh.result.title || 'error'
-let n2 = lolh.result.link
-let n3 = lolh.result.size
-let n4 = lolh.result.thumbnail
-m.react(done)
-await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*Título*\n${n}\n\n*Peso*\n${n3}`, thumbnail: await fetch(n4) }, { quoted: m })
+if (size.split('MB')[0] >= limit) return conn.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m).then(_ => m.react('✖️'))
+
+await conn.sendMessage(m.chat, {
+        text: `🍭 *Título ∙* ${title}\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .*`,
+        contextInfo: { 
+          mentionedJid: [m.sender],
+        }
+      }, { quoted: m })
+
+await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m)
+await m.react('✅')
 } catch {
-await conn.reply(m.chat, `🚩 *Ocurrió un error*`, m, fake, )
-m.react(error)}}
-
-}
-handler.help = ['ytv']
-handler.tags = ['descargas']
-handler.command = /^fgmp4|dlmp4|getvid|yt(v|mp4)?$/i
-
-handler.register = true
-handler.limit = true
-
+await conn.reply(m.chat,`*☓ Ocurrió un error inesperado*`, m).then(_ => m.react('✖️'))
+//console.error(error)
+}}}
+handler.help = ['ytmp4 <url yt>']
+handler.tags = ['downloader']
+handler.command = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i;
+handler.star = 2
+handler.register = true 
 export default handler
