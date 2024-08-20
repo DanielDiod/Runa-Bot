@@ -162,12 +162,12 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 let listSections = []    
 listSections.push({
 title: '',
-rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para ver todos los comandos\n` }, { header: "SudBot", title: "", id: `.serbot --code`, description: `Para volverte sudbot con código de 8 dígitos 🤖\n` },
+rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para ver todos los comandos\n` }, { header: "YouTube Music", title: "", id: `.play`, description: `Para música\n` },
 { header: "Velocidad", title: "", id: `.ping`, description: `Ver velocidad del bot 🎌\n` },
 { header: "Idioma", title: "", id: `.idioma`, description: `elije tu idioma favorito  🌍\n` },
 { header: "creador", title: "", id: `.creador`, description: `comunicate con mi creador ⚙️` }
 ]})
-await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Creador:* Daniel\n*Versión:* 1.0.0\n\n💮 si hay algún error puedes contactarme, usa el comando: #owner\n\nGracias¡! 🔴', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
+await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Creador:* Daniel\n*Versión:* 1.0.0\n\nEl Bot aun esta en desarrollo tener paciencia 🍫', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
   } catch (e) {
     conn.reply(m.chat, '🍟 Lo sentimos, el menú tiene un error.', m)
     throw e
