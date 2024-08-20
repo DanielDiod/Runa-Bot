@@ -82,11 +82,11 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 let menu = `⌜ *${wm}* ⌟  
 
- ╭━〔  𝐈𝐍𝐅𝐎 𝐃𝐄𝐋 𝐁𝐎𝐓 ⛅  〕⬣
-*┃➤ 👤 Creador : Daniel 🇦🇱* 
-*┃➤ 🌐 Pais : Perú 🇵🇪*
-*┃➤ ⌛ Tiempo activo : #uptime*
- ╰━━━━━━━━━━━━⬣
+ *•/• Información - Bot •/•*
+  👤 Creador : Daniel 🇦🇱
+  🌐 Pais : Perú 🇵🇪
+  ⌛ Tiempo activo : %uptime
+ 
  
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
