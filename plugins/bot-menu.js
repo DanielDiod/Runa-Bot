@@ -82,10 +82,11 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 let menu = `⌜ *${wm}* ⌟  
 
- *•/• Información - Bot •/•*
-  👤 Creador : Daniel 🇦🇱
-  🌐 Pais : Perú 🇵🇪
-  ⌛ Tiempo activo : %uptime
+*•/• Información - Bot •/•*
+ 
+👤 Creador : Daniel 🇦🇱
+🌍 Pais : Perú 🇵🇪
+⌛ Terminal : Linux
  
  
 🏳️ By Daniel`.trim()
