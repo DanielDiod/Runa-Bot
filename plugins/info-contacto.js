@@ -11,7 +11,7 @@ let bio = biografia.status?.toString() || 'Sin Biografía'
 let biobot = biografiaBot.status?.toString() || 'Sin Biografía'
 
 await conn.sendContactArray(m.chat, [
-[devnum, `${await conn.getName('51955918117'+'@s.whatsapp.net')}`, `🍭 Creador`, dev, email, `Peru`, `https://github.com/DanielDiod`, bio],
+[devnum, `${await conn.getName('51994143761'+'@s.whatsapp.net')}`, `🍭 Creador`, dev, email, `Peru`, `https://github.com/DanielDiod`, bio],
 [`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🍧 Runa Bot`, `📵 No Hacer Spam`, email, `Perú 🇵🇪`, `https://github.com/DanielDiod/Runa-Bot`, biobot]
 ], m)
   
