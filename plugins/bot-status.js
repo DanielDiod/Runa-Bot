@@ -30,7 +30,7 @@ let _ramTotal = (ramTotal + ' MB')
 let neww = performance.now()
         
 
-var txt = `🚩 *Estado*
+var txt = `🍟 Estado De La Bot
 
 *OS* : ${OS}
 *CPU Model* : ${cpuModel}
