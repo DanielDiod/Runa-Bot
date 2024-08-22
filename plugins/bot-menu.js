@@ -86,7 +86,7 @@ let menu = `
 👤 Creador : Daniel 🇦🇱
 🌍 Pais : Perú 🇵🇪
 🍟 Terminal : Linux
-☁️ Prefijo : [.]
+☁️ Librería : Baileys
 
  
  
