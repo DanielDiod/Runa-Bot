@@ -16,12 +16,12 @@ if (isBotAdmin) {
 const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
 if (m.text.includes(linkThisGroup)) return !0
 }
-await conn.reply(m.chat, `🚩 *¡Enlace detectado!*\n\n*${await this.getName(m.sender)} mandaste un enlace prohibido por lo cual seras eliminado*`, m, fake, )
-if (!isBotAdmin) return conn.reply(m.chat, `🚩 *No soy admin, no puedo eliminar intrusos*`, m, fake, )
+await conn.reply(m.chat, `☁️ ¡Enlace detectado!\n\n${await this.getName(m.sender)} mandaste un enlace prohibido por lo cual seras eliminado`, m)
+if (!isBotAdmin) return conn.reply(m.chat, `☁️ No soy admin, no puedo eliminar intrusos`, m)
 if (isBotAdmin) {
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-} else if (!bot.restrict) return conn.reply(m.chat, `*¡Esta característica esta desactivada!*`, m, fake, )
+} else if (!bot.restrict) return conn.reply(m.chat, `☁️ ¡Esta característica esta desactivada!`, m)
 }
 return !0
 
