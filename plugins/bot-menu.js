@@ -106,7 +106,7 @@ sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, wm, '', null, null, [['Test', 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv']], m)
+conn.sendButton(m.chat, menu, 'bug', '', null, null, [['Test', 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv']], m)
 
 await m.react('✅')	
 } catch (e) {
