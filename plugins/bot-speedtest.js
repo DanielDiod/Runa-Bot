@@ -5,7 +5,7 @@ const exec = promisify(cp.exec).bind(cp)
 
 var handler = async (m) => {
 
-conn.reply(m.chat, '🚀 Espere un momento ', m, fake, )
+conn.reply(m.chat, '☁️ Espere un momento soy lent..', m)
 
 let o
   
@@ -18,8 +18,8 @@ o = e
 let {stdout, stderr} = o
 
 
-if (stdout.trim()) conn.reply(m.chat, stdout, m, fake, )
-if (stderr.trim()) conn.reply(m.chat, stderr, m, fake, )
+if (stdout.trim()) conn.reply(m.chat, stdout, m)
+if (stderr.trim()) conn.reply(m.chat, stderr, m)
 }
 
 }
