@@ -14,7 +14,7 @@ global.__filename = function filename(pathURL = import.meta.url, rmPrefix = plat
 const __dirname = global.__dirname(import.meta.url)
 
 global.owner = [
-['51955918117', 'Daniel', true],
+['51994143761', 'Daniel', true],
 ['523912130071', 'Gael', true],
 ['51955918117'],
 ['573012482597'],
