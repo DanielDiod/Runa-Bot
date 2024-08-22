@@ -93,7 +93,7 @@ let menu = `
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://telegra.ph/file/940ac494d7ca5ca132fea.jpg`)).buffer()  
-await conn.sendMessage(m.chat, {
+/*await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
 mentionedJid: [m.sender],
@@ -105,7 +105,9 @@ thumbnail: img,
 sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
-}}}, { quoted: m})
+}}}, { quoted: m})*/
+conn.sendButton(m.chat, menu, wm, 'https://telegra.ph/file/940ac494d7ca5ca132fea.jpg', null, null, [['Test', 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv']], m)
+
 await m.react('✅')	
 } catch (e) {
 //await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
