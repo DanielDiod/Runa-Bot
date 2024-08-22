@@ -110,8 +110,9 @@ conn.sendButton(m.chat, menu, wm, img, null, null, [['Test', 'https://chat.whats
 
 await m.react('✅')	
 } catch (e) {
+m.reply(e)
 //await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+//console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)	
 }}
 handler.help = ['menu', 'help', '?']
