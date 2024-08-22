@@ -106,7 +106,7 @@ sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, wm, 'https://telegra.ph/file/940ac494d7ca5ca132fea.jpg', [['Menu', `.menu`], ['Velocidad', `.ping`]], null, [['Canal', ${channel}]], m)
+conn.sendButton(m.chat, menu, wm, 'https://telegra.ph/file/940ac494d7ca5ca132fea.jpg', [['Menu', `.menu`], ['Velocidad', `.ping`]], null, [['Canal', `${channel}`]], m)
 
 await m.react('✅')	
 } catch (e) {
