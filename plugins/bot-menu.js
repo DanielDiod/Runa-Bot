@@ -85,7 +85,9 @@ let menu = `
  
 👤 Creador : Daniel 🇦🇱
 🌍 Pais : Perú 🇵🇪
-⌛ Terminal : Linux
+🍟 Terminal : Linux
+☁️ Prefijo : [.]
+
  
  
 🏳️ By Daniel`.trim()
