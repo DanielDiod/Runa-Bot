@@ -100,6 +100,8 @@ let menu = `
 
 🍟.fb
 🍟.play
+🍟.ytmp3 
+🍟.ytmp4
 🍟.tiktok
 🍟.tiktokimg
 🍟.Spotify 
