@@ -2,11 +2,11 @@ import fetch from 'node-fetch'
 
 var handler = async(m, { conn, text, usedPrefix, command }) => {
 
-if (!text) return conn.reply(m.chat, `🎌 *Ingrese un enlace de tiktok que contenga imágenes*`, m, fake, )
+if (!text) return conn.reply(m.chat, `🎌 *Ingrese un enlace de tiktok que contenga imágenes*`, m)
 m.react(rwait)
-if (!(text.includes('http://') || text.includes('https://'))) return conn.reply(m.chat, `🚩 *Este enlace no contiene http:// ni https://*`, m, fake, )
+if (!(text.includes('http://') || text.includes('https://'))) return conn.reply(m.chat, `🚩 *Este enlace no contiene http:// ni https://*`, m)
 m.react(error)
-if (!text.includes('tiktok.com')) return conn.reply(m.chat, `🚩 *Url errónea*`, m, fake, )
+if (!text.includes('tiktok.com')) return conn.reply(m.chat, `🚩 *Url errónea*`, m)
 m.react(error)
 
 try {
@@ -26,7 +26,7 @@ m.react(done)
 } catch (e) {
 console.log(e)
 m.react(error)
-return conn.reply(m.chat, `🚩 *Ocurrió un fallo*`, m, fake, )
+return conn.reply(m.chat, `🚩 *Ocurrió un fallo*`, m)
 }
 
 }
