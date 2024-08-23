@@ -71,7 +71,7 @@ switch (selection) {
 case 'audio': {
 let c = '360' + 'p'
 const audiodl = await youtubedl(url).catch(async _ => await youtubedlv2(url));
-audioUrl = await audiodl.video[c].download()
+const audioUrl = await audiodl.video[c].download()
 const ytMsg = `\`YouTube - ${query}\`\n\nTítulo: *${video.title}*\nVistas: *${video.views}*\nDuración: *${video.timestamp}*\nEnlace: ${url}\nDescripción: ${video.description}\n\n> Enviando ${selection}`
 await conn.sendMessage(m.chat, { image: { url: `${video.thumbnail}` }, caption: ytMsg }, { quoted: m })
 await conn.sendMessage(m.chat, { audio: { url: audioUrl }, mimetype: 'audio/mpeg' }, { quoted: m })
@@ -79,7 +79,7 @@ await conn.sendMessage(m.chat, { audio: { url: audioUrl }, mimetype: 'audio/mpeg
 break
 case 'video': {
 const videodl = await youtubedl(url).catch(async _ => await youtubedlv2(url));
-videoUrl = await videodl.video['360p'].download()
+const videoUrl = await videodl.video['360p'].download()
 const ytMsg = `\`YouTube - ${query}\`\n\nTítulo: *${video.title}*\nVistas: *${video.views}*\nDuración: *${video.timestamp}*\nEnlace: ${url}\nDescripción: ${video.description}\n\n> Enviando ${selection}`
 await conn.sendMessage(m.chat, { image: { url: `${video.thumbnail}` }, caption: ytMsg }, { quoted: m })
 await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: '`Video de YouTube`' }, { quoted: m })
@@ -87,7 +87,7 @@ await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: '`Video de Y
 break
 case 'mp3doc': {
 const mp3dl = await youtubedl(url).catch(async _ => await youtubedlv2(url));
-mp3Url = await mp3dl.video['360p'].download()
+const mp3Url = await mp3dl.video['360p'].download()
 const ytMsg = `\`YouTube - ${query}\`\n\nTítulo: *${video.title}*\nVistas: *${video.views}*\nDuración: *${video.timestamp}*\nEnlace: ${url}\nDescripción: ${video.description}\n\n> Enviando ${selection}`
 await conn.sendMessage(m.chat, { image: { url: `${video.thumbnail}` }, caption: ytMsg }, { quoted: m })
 await conn.sendMessage(m.chat, {document: {url: mp3Url}, mimetype: 'audio/mpeg', fileName: `${query}.mp3`}, {quoted: m})
@@ -95,7 +95,7 @@ await conn.sendMessage(m.chat, {document: {url: mp3Url}, mimetype: 'audio/mpeg',
 break
 case 'mp4doc': {
 const mp4dl = await youtubedl(url).catch(async _ => await youtubedlv2(url));
-mp4Url = await mp4dl.video['360p'].download()
+const mp4Url = await mp4dl.video['360p'].download()
 const ytMsg = `\`YouTube - ${query}\`\n\nTítulo: *${video.title}*\nVistas: *${video.views}*\nDuración: *${video.timestamp}*\nEnlace: ${url}\nDescripción: ${video.description}\n\n> Enviando ${selection}`
 await conn.sendMessage(m.chat, { image: { url: `${video.thumbnail}` }, caption: ytMsg }, { quoted: m })
 await conn.sendMessage(m.chat, {document: {url: mp4Url}, mimetype: 'video/mp4', fileName: `${query}.mp4`}, {quoted: m})
