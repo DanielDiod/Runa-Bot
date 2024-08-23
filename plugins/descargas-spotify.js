@@ -86,7 +86,7 @@ let info = `> - S P O T I T Y - D L \n
 ✩ *Album:* ${res.album}\n
 ✩ *Duracion:* ${res.duracion}\n
 ✩ *Fuente:* *Spotify*\n
-✩ *Enlace:* ${shortURL}\n\n
+✩ *Enlace:* ${shortURL}\n
 *- ↻enviando audio espere un momento soy lenta..*`
 let resImg = await fetch(res.imagen)
 let thumbb = await resImg.buffer()
