@@ -167,7 +167,7 @@ rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para 
 { header: "3049 Imperio", title: "", id: `.imperio`, description: `Saber la historia de 3049 🏫\n` },
 { header: "creador", title: "", id: `.creador`, description: `comunicate con mi creador ⚙️` }
 ]})
-await conn.sendList(m.chat, `\*•/• Menu - Lista •/•*\n\n${saludo} ${nombre}\n\n🚩Informaciòn:\n\n*Autor:*Daniel\n*Version:*${vs}\n\n🍟Aviso:\nEste proyecto aun sigue en mejoras espero sea de vuestro agrado`, null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
+await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Autor:* Emerson x Aixa\n*Versión Actual:* 1.0.0\n\n*🍟Aviso:*\nEl Bot aun esta en desarrollo , Espero sea de vuestro agrado', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
   } catch (e) {
     conn.reply(m.chat, '🍟 Lo sentimos, el menú tiene un error.', m)
     throw e
@@ -189,4 +189,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
+                         }
