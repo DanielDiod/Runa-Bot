@@ -111,7 +111,7 @@ sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, wm, 'https://telegra.ph/file/a247fa451226f617743b3.jpg', [['Directores', `.directores`]], null, [['Facebook', `${channel}`]], m)
+conn.sendButton(m.chat, menu, wm, 'https://telegra.ph/file/a247fa451226f617743b3.jpg', [['Directores', `.directores`]], null, [['Facebook', `${yt}`]], m)
 
 await m.react('✅')	
 } catch (e) {
