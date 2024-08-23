@@ -81,20 +81,27 @@ await conn.sendMessage(m.chat, {
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
 let menu = `  
-*•/• RUNA BOT - MD •/•*
+*•/• Runa Bot - MD •/•*
  
 👤 Creador : Daniel 🇦🇱
 🌍 Pais : Perú 🇵🇪
 🍟 Terminal : Linux
 ☁️ Librería : Baileys
 
-*•/• INFORMACIÓN BOT•/•*
+*•/• Información Bot •/•*
 
 🎐.owner
 🎐.totalfunciones
 🎐.ping
 🎐.status
-🎐.uptime  
+🎐.uptime
+
+*•/• Downloaders •/•*
+
+🍟.fb
+🍟.play
+🍟.tiktok
+🍟.Spotify 
  
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
