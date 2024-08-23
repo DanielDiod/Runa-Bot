@@ -112,6 +112,8 @@ let menu = `
 ☁️.mercadolibre
 ☁️.google
 ☁️.yts
+☁️.pinterestsearch
+☁️.tiktoksearch 
 
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
