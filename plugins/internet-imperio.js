@@ -95,7 +95,7 @@ En la actualidad todos los integrantes de la IE están comprometidos a elevar el
 A lo largo de existencia de esta Alma Mater cobijó a mucho Alumnos, Maestros y Directores presentando a continuación la relación.
  
  
-🏳️ By Daniel`.trim()
+🔰 By Emerson x Aixa`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://telegra.ph/file/a247fa451226f617743b3.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
