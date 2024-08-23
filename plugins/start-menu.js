@@ -167,7 +167,7 @@ rows: [{ header: "Menu Completo", title: "", id: `.allmenu`, description: `Para 
 { header: "3049 Imperio", title: "", id: `.imperio`, description: `Saber la historia de 3049 🏫\n` },
 { header: "creador", title: "", id: `.creador`, description: `comunicate con mi creador ⚙️` }
 ]})
-await conn.sendList(m.chat, '\`•/• Menu - Lista •/•`\n\n*Creador:* Daniel\n*Versión:* 1.0.0\n\nEl Bot aun esta en desarrollo tener paciencia 🍫', null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
+await conn.sendList(m.chat, `> ${saludo} ${nombre}\n\n🚩 Información:\n\n*Autor:* Daniel!\n*Versión Actual:* ${vs}\n\n🍟 Aviso:\nEste bot puede tener errores ya que aún sigue en desarrollo.`, null, `Clik`, listSections, { mentions: [m.sender]}, {quoted: m})
   } catch (e) {
     conn.reply(m.chat, '🍟 Lo sentimos, el menú tiene un error.', m)
     throw e
