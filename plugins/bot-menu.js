@@ -103,7 +103,8 @@ let menu = `
 🍟.tiktok
 🍟.tiktokimg
 🍟.Spotify 
- 
+🍟.Spotifydl
+
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://telegra.ph/file/940ac494d7ca5ca132fea.jpg`)).buffer()  
