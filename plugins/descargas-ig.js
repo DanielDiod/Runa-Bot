@@ -1,12 +1,13 @@
 import fetch from 'node-fetch'
 import axios from 'axios'
 
-var handler = async (m, {conn, args, command, usedPrefix, text }) => {
+var handler = async (m, {conn, text, command, usedPrefix }) => {
  
 if (!text) {
-return conn.reply(m.chat, `☁️ Ingrese un enlace de instagram\n\nEjemplo >${usedPrefix + command} https://www.instagram.com/reel/CuqAzGRAbZa/?igshid=MzRlODBiNWFlZA==`, m)
+return m.reply('Falta enlace')//conn.reply(m.chat, `☁️ Ingrese un enlace de instagram\n\nEjemplo >${usedPrefix + command} https://www.instagram.com/reel/CuqAzGRAbZa/?igshid=MzRlODBiNWFlZA==`, m)
 }
- conn.reply(m.chat, `🍟 Espere un momento soy lenta...`, m)
+ 
+conn.reply(m.chat, `🍟 Espere un momento soy lenta...`, m)
 
 if (!text.includes('instagram')) {
 return m.reply('Enlace no válido. Compruebe el enlace')
