@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+/*import fetch from 'node-fetch'
 import axios from 'axios'
 
 var handler = async (m, {conn, text, command, usedPrefix }) => {
@@ -33,5 +33,14 @@ handler.command = /^(instagramdl|instagram|igdl|ig|instagramdl2|instagram2|igdl2
 
 handler.register = true
 handler.limit = true
+
+export default handler*/
+
+const handler = async(m, { text }) => {
+if (!text) {
+return m.reply('.ig https://www.instagram.com/reel/C--LbImuITr/?igsh=bTA2M25saHk3cHM1')
+}
+}
+handler.command = ['ig']
 
 export default handler
