@@ -104,11 +104,12 @@ let menu = `
 🍟.tiktokimg
 🍟.Spotify 
 
-*•/• Downloaders •/•*
+*•/• Serachs •/•*
 
 ☁️.spotifysearch
 ☁️.mercadolibre
 ☁️.google
+☁️.yts
 
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
