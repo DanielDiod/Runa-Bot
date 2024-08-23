@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import axios from 'axios'
 
-var handler = async (m, {conn, args, command, usedPrefix}) => {
+var handler = async (m, {conn, args, command, usedPrefix, text}) => {
  
 if (!text) {
 return conn.reply(m.chat, `☁️ Ingrese un enlace de instagram\n\nEjemplo >${usedPrefix + command} https://www.instagram.com/reel/CuqAzGRAbZa/?igshid=MzRlODBiNWFlZA==`, m)
