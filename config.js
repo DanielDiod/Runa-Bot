@@ -92,7 +92,7 @@ let botVid12 = 'https://telegra.ph/file/1c5f62544f7278899a9be.mp4' //bl
 global.yartexVid = [botVid1, botVid2, botVid3, botVid4, botVid5, botVid6, botVid7, botVid8, botVid9, botVid10, botVid11, botVid12]
   
 //Enlaces
-global.yt = 'https://chat.whatsapp.com/BCwy3LycCvSK5dHoslCEK9'
+global.yt = 'https://www.facebook.com/IE3049Oficial'
 global.ig = 'https://chat.whatsapp.com/BCwy3LycCvSK5dHoslCEK9'
 global.md = 'https://github.com/DanielDiod/Runa-Bot'
 global.paypal = 'https://github.com/DanielDiod/Runa-Bot'
