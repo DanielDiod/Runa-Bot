@@ -15,7 +15,7 @@ const data = await fetch(`https://lolhuman.xyz/api/facebook?apikey=GataDiosV2&ur
 let video = await data.json()
 let buff = await video.result[0]
 
-const caption = `Video de Facebook`
+const caption = `listo 🍟`
 
 await conn.sendMessage(m.chat, { video: { url: buff }, mimetype: 'video/mp4', fileName: `video.mp4`, caption: caption, mentions: [m.sender], }, { quoted: m })
 
