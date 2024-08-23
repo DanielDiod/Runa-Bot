@@ -114,6 +114,16 @@ let menu = `
 ☁️.yts
 ☁️.pinterestsearch
 ☁️.tiktoksearch 
+☁️.twittersearch
+☁️.imagen
+
+*•/• Al •/•*
+
+🍘.ia
+🍘.gemini
+🍘.bing
+🍘@Runa
+
 
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
