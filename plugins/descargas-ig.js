@@ -3,8 +3,10 @@ import axios from 'axios'
 
 var handler = async (m, {conn, args, command, usedPrefix}) => {
  
-if (!text) return conn.reply(m.chat, `☁️ Ingrese un enlace de instagram\n\nEjemplo >${usedPrefix + command} https://www.instagram.com/reel/CuqAzGRAbZa/?igshid=MzRlODBiNWFlZA==`, m)
-conn.reply(m.chat, `🍟 Espere un momento soy lenta...`, m)
+if (!text) {
+return conn.reply(m.chat, `☁️ Ingrese un enlace de instagram\n\nEjemplo >${usedPrefix + command} https://www.instagram.com/reel/CuqAzGRAbZa/?igshid=MzRlODBiNWFlZA==`, m)
+}
+ conn.reply(m.chat, `🍟 Espere un momento soy lenta...`, m)
 
 if (!text.includes('instagram')) {
 return m.reply('Enlace no válido. Compruebe el enlace')
@@ -22,6 +24,7 @@ await conn.sendMessage(m.chat, { video: { url: buff }, mimetype: 'video/mp4', fi
 } catch (e) {
 m.reply('Ha ocurrido un error al descargar su solicitud: ' + e)
 }
+ 
 }
 handler.help = ['ig']
 handler.tags = ['descargas']
