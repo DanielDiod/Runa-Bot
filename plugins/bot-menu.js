@@ -101,6 +101,7 @@ let menu = `
 🍟.fb
 🍟.play
 🍟.tiktok
+🍟.tiktokimg
 🍟.Spotify 
  
 🏳️ By Daniel`.trim()
